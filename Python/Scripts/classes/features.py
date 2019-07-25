@@ -182,6 +182,7 @@ class Features(Navigation, Inputs):
 
         end = time.time() + duration * 60
         while time.time() < end:
+            self.click(625, 500)  # click somewhere to move tooltip
             if not self.check_pixel_color(*coords.IS_DEAD):
                 if bosses:
                     if self.check_pixel_color(*coords.IS_BOSS_CROWN):
@@ -730,7 +731,7 @@ class Features(Navigation, Inputs):
         self.click(*coords.LEFT_ARROW, button="right")
         for i in range(coords.TITAN_ZONE[target]):
             self.click(*coords.RIGHT_ARROW)
-
+        self.current_adventure_zone = coords.TITAN_ZONE[target]
         time.sleep(userset.LONG_SLEEP)
 
         available = self.ocr(*coords.OCR_ADV_TITAN)
